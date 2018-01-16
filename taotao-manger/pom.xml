@@ -10,7 +10,7 @@
 	<artifactId>taotao-manger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
- 
+
 	<dependencies>
 		<dependency>
 			<groupId>com.wangzhi</groupId>
