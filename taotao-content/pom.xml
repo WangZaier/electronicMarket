@@ -6,6 +6,7 @@
 		<artifactId>taotao-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
 	<groupId>com.wangzhi</groupId>
 	<artifactId>taotao-content</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
