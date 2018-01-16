@@ -1,0 +1,6 @@
+com/taotao/search/mapper/SearchItemMapper.class
+com/taotao/search/listener/ItemAddMessageListener.class
+com/taotao/search/service/impl/SearchServiceImpl.class
+com/taotao/search/service/impl/SearchItemServiceImpl.class
+com/taotao/search/dao/SearchDao.class
+com/taotao/search/listener/MyMessageListener.class

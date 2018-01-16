@@ -1,0 +1,36 @@
+package com.taotao.pagehelper;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.taotao.mapper.TbItemMapper;
+import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemExample;
+
+public class TestPageHelper {
+	
+	public static void main(String[] args){
+		
+		PageHelper.startPage(1, 10);
+		
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
+		
+		TbItemMapper itemMapper = applicationContext.getBean(TbItemMapper.class);
+		
+		
+		//创建Example对象
+		TbItemExample example = new TbItemExample();
+		//Criteria createCriteria = example.createCriteria();
+		List<TbItem> list = itemMapper.selectByExample(example);
+		
+		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
+		
+		System.out.println("查询总记录数" + pageInfo.getTotal() );
+		System.out.println("总记录数" + pageInfo.getPages());
+		System.out.println("返回的记录数" + list.size());
+	}
+}

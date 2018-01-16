@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+	<!-- JMS厂商提供的ConnectionFactory -->
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<constructor-arg name="brokerURL" value="tcp://118.31.42.117:61616"/>
+	</bean>
+	
+	<!-- spring对象的ConnectionFactory的封装，会帮你将链接的初始化完成-->
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+	</bean>
+	
+	<!-- 配置JmsTemple -->
+	<bean 	id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"/>
+	</bean>
+	
+	<!-- 配置消息的Destination对象 -->
+	<bean id="test-queue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg name="name" value="test-queue"></constructor-arg>
+	</bean>
+	<bean id="itemAddtopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg name="name" value="item-add-topic"></constructor-arg>
+	</bean>
+	
+	<!-- 消息接受者 -->
+	<!-- 在MuMessageListener上层的有几个参数,想要使用这个Lisntener需要把那几个参数注入一下，
+	,一个链接工厂,一个由spring封装的jms模版，我们这里使用的是test-queue,就是Queue类型的-->
+	<bean id="myMessageListener" class="com.taotao.search.listener.MyMessageListener" ></bean>
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+		<property name="destination" ref="test-queue"></property>
+		<property name="messageListener" ref="myMessageListener"></property>
+	</bean>
+
+	<bean id="itemAddMessageListener" class="com.taotao.search.listener.ItemAddMessageListener" ></bean>
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+		<property name="destination" ref="itemAddtopic"></property>
+		<property name="messageListener" ref="itemAddMessageListener"></property>
+	</bean>
+	
+	
+	
+</beans>
