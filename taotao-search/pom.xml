@@ -15,6 +15,7 @@
 		<module>taotao-search-service</module>
 	</modules>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>com.wangzhi</groupId>
