@@ -14,7 +14,7 @@
     
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
-    
+
     <!-- 视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,13 +23,19 @@
 	</bean>
 	
 	<!-- 配置包扫描器,扫描@Controller注解的类 -->
-	<context:component-scan base-package="com.taotao.sso.controller"/>	
-	
-    <!-- 引用dubbo服务 -->
+	<context:component-scan base-package="com.taotao.sso.controller"/>
+
+	<!--配置资源映射-->
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"></mvc:resources>
+
+
+	<!-- 引用dubbo服务 -->
 	<dubbo:application name="taotao-sso-web"/>
 	<dubbo:registry protocol="zookeeper" address="118.31.42.117:2181"/>	
 	<dubbo:reference interface="com.taotao.sso.service.UserService" id="userServiceImpl" />
    <!--  <dubbo:reference interface="com.taotao.content.service.ContentService" id="contentService" /> -->
-    
-    
+
+
 </beans>

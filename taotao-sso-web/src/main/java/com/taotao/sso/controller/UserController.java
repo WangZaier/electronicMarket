@@ -3,8 +3,11 @@ package com.taotao.sso.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,10 +68,54 @@ public class UserController {
 		TaotaoResult result = userService.login(username, password);
 		
 		//吧token写入cookie
-		CookieUtils.setCookie(request, response, TOKEN_KEY , result.getData().toString());
+        if(result.getStatus() == 200){
+            CookieUtils.setCookie(request, response, TOKEN_KEY , result.getData().toString());
+        }
+
 		return result;
 	}
-	
-	
+
+
+    /**
+     * 验证token
+     * @param token
+     * @return
+     */
+//    @RequestMapping(value = "/user/token/{token}" , method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    @ResponseBody
+//    public String getUserToken(@PathVariable String token , String callback   ){
+//        TaotaoResult result = userService.getUserByToken(token);
+//        //判断是否为callback请求
+//        if(StringUtils.isNotBlank(callback)){
+//            return callback + "(" + JsonUtils.objectToJson(result) + ");" ;
+//        }else{
+//            return JsonUtils.objectToJson(result);
+//        }
+//    }
+
+    /**
+     * Jsonp的第二种用法 ，仅限spring4.1以上版本使用
+     * @param token
+     * @param callback
+     * @return
+     */
+    @RequestMapping(value = "/user/token/{token}" , method = RequestMethod.GET)
+    @ResponseBody
+    public Object getUserToken(@PathVariable String token , String callback   ){
+        TaotaoResult result = userService.getUserByToken(token);
+        //判断是否为callback请求
+        if(StringUtils.isNotBlank(callback)){
+            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
+            //设置回调方法
+            mappingJacksonValue.setJsonpFunction(callback);
+            return mappingJacksonValue;
+        }else{
+            return result;
+        }
+    }
+
+
+
 }
 
