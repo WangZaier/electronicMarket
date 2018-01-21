@@ -33,8 +33,8 @@ public class ItemController {
 		//取商品基本信息并封装
 		TbItem tbItem = itemService.getItemId(itemId);
 		Item item = new Item(tbItem);
-		System.out.println("item:" + item);
-		System.out.println("itemImages" + item.getImages());
+		//System.out.println("item:" + item);
+		//System.out.println("itemImages" + item.getImages());
 		//取商品详情
 		TbItemDesc itemDesc = itemService.getItemDescById(itemId);
 		//添加页面数据

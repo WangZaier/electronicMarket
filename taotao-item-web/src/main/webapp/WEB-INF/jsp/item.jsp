@@ -135,7 +135,7 @@
 		        <li id="choose-result"><div class="dt"></div><div class="dd"></div></li>
 				<li id="choose-btns">
 					<div id="choose-btn-append"  class="btn">
-							<a class="btn-append " id="InitCartUrl" href="/cart/add/${item.id}.html" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
+							<a class="btn-append " id="InitCartUrl" href="javascript:addCart()" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
 					</div>
 					<div id="choose-btn-easybuy" class="btn"></div>
 					<div id="choose-btn-divide" class="btn"></div>
@@ -299,6 +299,13 @@
 			itemControl.getItemDesc(itemId);
 		},1000);
 	});
+	
+	function addCart() {
+		//加入购物车之前，先取商品数量
+		var num = $("#buy-num").val();
+		//拼装url参数，做跳转
+		location.href="http://localhost:8089/cart/add/${item.id}.html?num=" + num;
+	}
 </script>
 </body>
 </html>
