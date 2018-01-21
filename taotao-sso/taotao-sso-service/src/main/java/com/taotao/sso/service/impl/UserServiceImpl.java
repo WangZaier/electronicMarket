@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService{
 		//检验数据有效性
 		//数据是否为空
 		if( StringUtils.isBlank(tbUser.getUsername())) {
-			// 用户名不能为空　
+			// 用户名不能为空
 			return TaotaoResult.build(400 , "用户名不能为空");
 		}
 		//判断用户名是否为空
@@ -162,24 +162,23 @@ public class UserServiceImpl implements UserService{
 		//返回登陆成功,并需要吧token返回,还需要保存cookie
 		return TaotaoResult.ok(token);
 		}
-	
-	
+
 	
 	@Override
 	public TaotaoResult getUserByToken(String token) {
 		
 		//用token获获取账户信息
-		String json = jedisClient.get(USER_SESSION + token);
+		String json = jedisClient.get(USER_SESSION + ":" + token);
 		
 		if(StringUtils.isBlank(json)) {
 			return TaotaoResult.build(400, "用户登录已过期");
 		}
 		//查询完毕重置redis过期时间
-		jedisClient.expire(USER_SESSION + token, 3000);
+		jedisClient.expire(USER_SESSION + ":" + token, 3000);
 		
 		 //把json转换为用户信息
 		TbUser user = JsonUtils.jsonToPojo(json, TbUser.class);
-		
+
 		return TaotaoResult.ok(user );
 	}
 	
