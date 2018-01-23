@@ -60,7 +60,7 @@ http://my.csdn.net/qq_35101463
 mail:1103836847@qq.com
 
 思维导图：
-![cmd-markdown-logo](118.31.42.117/group1/M00/00/00/rBBSRFpnNhOACgKrAAGp0K_22DU094.png)
+![cmd-markdown-logo](http://118.31.42.117/group1/M00/00/00/rBBSRFpnNhOACgKrAAGp0K_22DU094.png)
 
 
 
