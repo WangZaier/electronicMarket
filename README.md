@@ -48,12 +48,12 @@
 > - 商品搜索服务：SolrCloud+IKAnalyzer分词器
 > - 消息详情异步上传solr中间件: activeMQ
 > - 文件存存储：
-    - 服务端
-        - FastDFS_server 文件资源存储
-        - Nginx 静态资源映射
-        - FastDFS Nginx Moudle(解决集群环境下文件同步未完成问题)
-    - 客户端
-        - FastDFS_Client
+     - 服务端
+         - FastDFS_server 文件资源存储
+         - Nginx 静态资源映射
+         - FastDFS Nginx Moudle(解决集群环境下文件同步未完成问题)
+     - 客户端
+         - FastDFS_Client
 > - 后台管理界面设计:easyUI
 > - 前端JS框架：Jquery
 
