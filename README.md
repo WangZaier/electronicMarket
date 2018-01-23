@@ -39,7 +39,7 @@
 
 ### 商城使用技术
 
-
+```
 >* 基本架构：`spring+springmvc+mybatis`
 >* 项目构建：maven
 >* 实现了SOA:dubbo+zookeeper注册中心
@@ -56,7 +56,7 @@
 - FastDFS_Client
 >* 后台管理界面设计:easyUI
 >* 前端JS框架：Jquery
-
+```
 ### 环境搭建可以参考我CSDN的文章
 http://my.csdn.net/qq_35101463
 
