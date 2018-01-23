@@ -39,24 +39,24 @@
 
 ### 商城使用技术
 
-```
->* 基本架构：`spring+springmvc+mybatis`
->* 项目构建：maven
->* 实现了SOA:dubbo+zookeeper注册中心
->* 缓存银弹：redis减轻门户网站缓存、部分商品详情的信息缓存
->* 单点登录：TOKEN+redis.实现登录,查询用户信息。
->* 商品搜索服务：SolrCloud+IKAnalyzer分词器
->* 消息详情异步上传solr中间件: activeMQ
->* 文件存存储：
-+ 服务端
-- FastDFS_server 文件资源存储
-- Nginx 静态资源映射
-- FastDFS Nginx Moudle(解决集群环境下文件同步未完成问题)
-+ 客户端
-- FastDFS_Client
->* 后台管理界面设计:easyUI
->* 前端JS框架：Jquery
-```
+
+> * 基本架构：`spring+springmvc+mybatis`
+> * 项目构建：maven
+> * 实现了SOA:dubbo+zookeeper注册中心
+> * 缓存银弹：redis减轻门户网站缓存、部分商品详情的信息缓存
+> * 单点登录：TOKEN+redis.实现登录,查询用户信息。
+> * 商品搜索服务：SolrCloud+IKAnalyzer分词器
+> * 消息详情异步上传solr中间件: activeMQ
+> * 文件存存储：
+    + 服务端
+    - FastDFS_server 文件资源存储
+    - Nginx 静态资源映射
+    - FastDFS Nginx Moudle(解决集群环境下文件同步未完成问题)
+    + 客户端
+    - FastDFS_Client
+> * 后台管理界面设计:easyUI
+> * 前端JS框架：Jquery
+
 ### 环境搭建可以参考我CSDN的文章
 http://my.csdn.net/qq_35101463
 
