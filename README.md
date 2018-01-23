@@ -1,6 +1,8 @@
-===== 王仔的淘淘商城
+王仔的淘淘商城
+==========
 
-———— 商城的模块
+商城的模块
+————
 
 ```
 ├─paren
@@ -35,7 +37,9 @@
 ```
 
 
-———— 商城使用技术
+商城使用技术
+————
+
 >* 基本架构：`spring+springmvc+mybatis`
 >* 项目构建：maven
 >* 实现了SOA:dubbo+zookeeper注册中心
@@ -53,12 +57,15 @@
 >* 后台管理界面设计:easyUI
 >* 前端JS框架：Jquery
 
-————  环境搭建可以参考我CSDN的文章
+环境搭建可以参考我CSDN的文章
+————
 http://my.csdn.net/qq_35101463
 
-———— 关于作者
+关于作者
+————
 mail:1103836847@qq.com
 
-———— 思维导图：
+思维导图：
+————
 ![cmd-markdown-logo](http://118.31.42.117/group1/M00/00/00/rBBSRFpnNhOACgKrAAGp0K_22DU094.png)
 
