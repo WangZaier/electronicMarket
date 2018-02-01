@@ -19,6 +19,7 @@ import com.taotao.common.utils.CookieUtils;
 import com.taotao.common.utils.JsonUtils;
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
+import sun.misc.Request;
 
 @Controller
 public class CartController {
@@ -71,14 +72,31 @@ public class CartController {
 		return "cartSuccess";
 
 	}
-	
+
+	/**
+	 * 从Cookie中取出所有的TTCART（按照key取出所有的cookie）
+	 * @param request
+	 * @return
+	 */
 	private List<TbItem> getCartItemList(HttpServletRequest request){
 		//从cookie中取购物车商品列表
-		String json = CookieUtils.getCookieValue(request, "TT_CART", true);
+		String json = CookieUtils.getCookieValue(request, CART_KEY, true);
 		if(StringUtils.isBlank(json)) {
 			return new ArrayList<>();
 		}
 		List<TbItem> list = JsonUtils.jsonToList(json, TbItem.class);
 		return list;
 	}
+
+	@RequestMapping("cart/cart")
+	public String showCartList(HttpServletRequest request){
+		//从cookie中取出所有的商品信息
+        List<TbItem> list = getCartItemList(request);
+        //将商品信息放入到request中
+        request.setAttribute("cartlist" , list);
+		//返回逻辑试图
+        return "cart";
+
+	}
+
 }
